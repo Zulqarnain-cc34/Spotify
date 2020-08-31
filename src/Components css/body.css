@@ -1,0 +1,10 @@
+.body {
+    flex: 0.8;
+    height: 100vh;
+    color: white;
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
+    background-color: rgb(91, 87, 117);
+    background: linear-gradient(rgb(91, 87, 117), rgb(0, 0, 0, 1));
+}
