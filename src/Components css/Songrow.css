@@ -1,0 +1,29 @@
+.songrow {
+    margin-left: 20px;
+    padding: 20px;
+    color: white;
+    z-index: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.songrow__album {
+    object-fit: contain;
+    width: 60px;
+    height: 60px;
+}
+
+.songrow__info {
+    margin-left: 20px;
+    padding: 10px 10px;
+}
+
+.songrow__info>h1 {
+    font-size: 18px;
+}
+
+.songrow__info>p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: gray
+}

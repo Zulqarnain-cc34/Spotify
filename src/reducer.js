@@ -4,13 +4,14 @@ export const initialState = {
   playing: false,
   items: null,
   token: null,
+  discover_weekly: null,
 };
-console.log(initialState);
 
 export const actionTypes = {
   SET_USER: "SET_USER",
   SET_TOKEN: "SET_TOKEN",
   SET_PLAYLISTS: "SET_PLAYLISTS",
+  SET_DISCOVER_WEEKLY: "SET_DISCOVER_WEEKLY",
 };
 const reducer = (state, action) => {
   console.log(action);
@@ -29,6 +30,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlists: action.playlists,
+      };
+    case actionTypes.SET_DISCOVER_WEEKLY:
+      return {
+        ...state,
+        discover_weekly: action.discover_weekly,
       };
 
     default:

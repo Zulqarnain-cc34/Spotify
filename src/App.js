@@ -8,18 +8,17 @@ import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 function App() {
   const spotify = new SpotifyWebApi();
-  const [{ playlists, token }, dispatch] = useStateValue();
-  console.log(playlists);
+  const [{ user, playlists, token }, dispatch] = useStateValue();
+
   useEffect(() => {
     const hash = getTokenFromResponse();
     window.location.hash = "";
     const _token = hash.access_token;
     async function getUser() {
       const user = await spotify.getMe();
-      console.log(user.display_name);
       await dispatch({
         type: actionTypes.SET_USER,
-        user: user.display_name,
+        user: user,
       });
       await dispatch({
         type: actionTypes.SET_TOKEN,
@@ -33,14 +32,22 @@ function App() {
         playlists: playlist,
       });
     }
+    async function getPlaylist() {
+      const response = await spotify.getPlaylist("52SbeAnyU5ksUqzPzfPgqJ");
+      await dispatch({
+        type: actionTypes.SET_DISCOVER_WEEKLY,
+        discover_weekly: response,
+      });
+    }
 
     if (_token) {
       spotify.setAccessToken(_token);
       getUser();
       getUserPlaylist();
+      getPlaylist();
     }
   }, [spotify, dispatch]);
-  console.log(playlists);
+
   return (
     <div className="App">
       {token ? <Player spotify={spotify} /> : <Login />}
